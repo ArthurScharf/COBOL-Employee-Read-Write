@@ -84,9 +84,10 @@
       * The body of a indefinite loop that reads lines from the
       * file and displays the output in a formatted way
        203-SHOW-OUTPUT.
-           MOVE YEARS-OF-SERVICE TO EDT-YEARS-OF-SERVICE
-           DISPLAY DEPARTMENT-CODE," | ",FIRST-NAME," ",LAST-NAME," | ",
-      -       EDT-YEARS-OF-SERVICE
+           IF YEARS-OF-SERVICE >= 10.5 THEN
+              MOVE YEARS-OF-SERVICE TO EDT-YEARS-OF-SERVICE
+              DISPLAY DEPARTMENT-CODE," | ",FIRST-NAME," ",LAST-NAME,
+      -        " | ",EDT-YEARS-OF-SERVICE.
            READ EMPLOYEE-FILE
               AT END MOVE 'N' TO FLG-LOOPING
            END-READ.
