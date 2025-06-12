@@ -17,8 +17,6 @@
               ORGANIZATION IS LINE SEQUENTIAL.
 
 
-      * Procedure names should be what they're going to do to the state
-
        DATA DIVISION.
        FILE SECTION.
       * File descriptor for Employee File. We'll read and write to this
@@ -26,7 +24,7 @@
        FD  EMPLOYEE-FILE.
        01  EMPLOYEE-FILE-LINE PIC X(55).
 
-      *
+      * Struct for employee records
        WORKING-STORAGE SECTION.
        01  EMPLOYEE-RECORD.
            05  EMPLOYEE-ID         PIC 9(6).
@@ -45,7 +43,7 @@
            05 FILLER               PIC X(3)   VALUE SPACES.
            05 FIRST-NAME-OUT       PIC A(20).
            05 FILLER               PIC X(3)   VALUE SPACES.
-           05 YEARS-OF-SERVICE-OUT PIC 99v9.
+           05 YEARS-OF-SERVICE-OUT PIC 99.9.
 
       * Simple header structure used for displaying.
       * I'm getting a warning that the string won't fit in the picture
@@ -135,6 +133,7 @@
            MOVE YEARS-OF-SERVICE TO YEARS-OF-SERVICE-OUT
            DISPLAY EMPLOYEE-RECORD-OUT.
 
+
       * Handles all the input decisions for creating a new record,
       * including the checking if the user wants to create with the
       * data that was entered
@@ -153,11 +152,12 @@
            DISPLAY "-- Write? (Y/N) --".
            ACCEPT CHOICE.
 
+      * Polls keyboard for whether we should continue taking input
        303-POLL-FOR-CONTINUE.
            DISPLAY "-- New Record? (Y/N) --".
            ACCEPT FLG-LOOPING.
 
-
+      *
        204-IO-CLEANUP.
            CLOSE EMPLOYEE-FILE.
 
