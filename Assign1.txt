@@ -19,8 +19,7 @@
        DATA DIVISION.
        FILE SECTION.
       * File descriptor for Employee File. We'll read and write to this
-      * NOTE: Could just have defined structure here.
-      * Only do this if you have different formatting
+      * TODO: Make Line Sequential??
        FD  EMPLOYEE-FILE.
        01  EMPLOYEE-FILE-LINE PIC X(55).
 
